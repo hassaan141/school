@@ -1,0 +1,7 @@
+ask if key is alawys the last one you insert from you recursion function
+
+ask how they get the balance value
+
+ask y y is left
+
+ask priority stack and heap
