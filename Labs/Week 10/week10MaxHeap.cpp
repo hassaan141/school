@@ -257,3 +257,78 @@ int main(){
 
     return 0;
 }
+
+// Heap element 1. key = 10,  data = a
+// Heap element 2. key = 5,  data = b
+// Heap element 3. key = 7,  data = c
+// Heap element 4. key = 4,  data = d
+// Heap element 5. key = 2,  data = e
+// Heap element 6. key = 1,  data = f
+
+// dequeue data: a
+
+// Heap element 1. key = 7,  data = c
+// Heap element 2. key = 5,  data = b
+// Heap element 3. key = 1,  data = f
+// Heap element 4. key = 4,  data = d
+// Heap element 5. key = 2,  data = e
+
+// enqueue 7 (g)
+
+// Heap element 1. key = 7,  data = c
+// Heap element 2. key = 5,  data = b
+// Heap element 3. key = 7,  data = g
+// Heap element 4. key = 4,  data = d
+// Heap element 5. key = 2,  data = e
+// Heap element 6. key = 1,  data = f
+
+// enqueue 5 (h) 
+
+// Heap element 1. key = 7,  data = c
+// Heap element 2. key = 5,  data = b
+// Heap element 3. key = 7,  data = g
+// Heap element 4. key = 4,  data = d
+// Heap element 5. key = 2,  data = e
+// Heap element 6. key = 1,  data = f
+// Heap element 7. key = 5,  data = h
+
+// dequeue data: c
+
+// Heap element 1. key = 7,  data = g
+// Heap element 2. key = 5,  data = b
+// Heap element 3. key = 5,  data = h
+// Heap element 4. key = 4,  data = d
+// Heap element 5. key = 2,  data = e
+// Heap element 6. key = 1,  data = f
+
+// dequeue data: g
+
+// Heap element 1. key = 5,  data = b
+// Heap element 2. key = 4,  data = d
+// Heap element 3. key = 5,  data = h
+// Heap element 4. key = 1,  data = f
+// Heap element 5. key = 2,  data = e
+
+// dequeue data: b
+
+// Heap element 1. key = 5,  data = h
+// Heap element 2. key = 4,  data = d
+// Heap element 3. key = 2,  data = e
+// Heap element 4. key = 1,  data = f
+
+// dequeue data: h
+
+// Heap element 1. key = 4,  data = d
+// Heap element 2. key = 1,  data = f
+// Heap element 3. key = 2,  data = e
+
+// dequeue data: d
+
+// Heap element 1. key = 2,  data = e
+// Heap element 2. key = 1,  data = f
+
+// dequeue data: e
+
+// Heap element 1. key = 1,  data = f
+// dequeue data: f
+// Empty!
