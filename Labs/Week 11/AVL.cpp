@@ -96,6 +96,7 @@ int main() {
 
     for (int i = 0; i < n; i++) {
         root = insert(root, keys[i]);
+        std::cout << "Inorder traversal of the AVL tree: "<<endl;
     }
 
     std::cout << "Inorder traversal of the AVL tree: ";

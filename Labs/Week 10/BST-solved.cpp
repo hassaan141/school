@@ -80,6 +80,7 @@ private:
 
     Node* deleteRecursive(Node* root, int key) {
 
+        //traverse through tree to find the node you want to delete
         if (root == nullptr) return root;
         if (key < root->key) {
             root->left = deleteRecursive(root->left, key);
@@ -87,6 +88,7 @@ private:
             root->right = deleteRecursive(root->right, key);
 
         } else {
+            //Node with 1 or 0 child
             if (root->left == nullptr) {
                 Node* temp = root->right;
                 delete root;
@@ -97,6 +99,7 @@ private:
                 delete root;
                 return temp;
             }
+            //Find the next smallest number in the right subtree and replace root with it, then recuresivly delete the right subtree
             Node* temp = minValueNode(root->right);
             root->key = temp->key;
             root->right = deleteRecursive(root->right, temp->key);

@@ -194,6 +194,105 @@ Node* insertRecursive(Node* node, int key) {
 
 //RECURSIVE DELETE IN BST
 
+//DELETE 1
+Node* deleteRecursive(Node* root, int key) {
+        //traverse through tree to find the node you want to delete
+        if (root == nullptr) return root;
+        if (key < root->key) {
+            root->left = deleteRecursive(root->left, key);
+        } else if (key > root->key) {
+            root->right = deleteRecursive(root->right, key);
+
+        } else {
+            //Node with 1 or 0 child
+            if (root->left == nullptr) {
+                Node* temp = root->right;
+                delete root;
+                return temp;
+
+            } else if (root->right == nullptr) {
+                Node* temp = root->left;
+                delete root;
+                return temp;
+            }
+            //Find the next smallest number in the right subtree and replace root with it, then recuresivly delete the right subtree
+            Node* temp = minValueNode(root->right);
+            root->key = temp->key;
+            root->right = deleteRecursive(root->right, temp->key);
+        }
+        return root;
+    }
+
+//DELETE 2 (LECTURES)
+
+    //IF LEAF NODE
+    if (current_node->leftChild == NULL && current_node->rightChild == NULL) {
+    // Step 3.1: a special case that if current_node is the root node
+    if (current_node == T) {
+        delete *pT;
+        *pT = NULL;
+        return true;
+    }
+
+    // Step 3.2: if it is not the root node then remove it
+    delete current_node;
+    if (isLeftChild) {
+        parent_node->leftChild = NULL;
+    } else {
+        parent_node->rightChild = NULL;
+    }
+    return true;
+}
+
+    //IF ONE CHILD
+    
+    // Step 4.1: if left child is not empty, right child is empty
+if (current_node->leftChild != NULL && current_node->rightChild == NULL) {
+    if (isLeftChild) {
+        parent_node->leftChild = current_node->leftChild;
+    } else {
+        parent_node->rightChild = current_node->leftChild;
+    }
+    delete current_node;
+    return true;
+}
+
+
+// Step 4.2: if right child is not empty, left child is empty
+else if (current_node->leftChild == NULL && current_node->rightChild != NULL) {
+    if (isLeftChild) {
+        parent_node->leftChild = current_node->rightChild;
+    } else {
+        parent_node->rightChild = current_node->rightChild;
+    }
+    delete current_node;
+    return true;
+}
+
+    //IF TWO CHILDREN
+    // Step 5
+if (current_node->leftChild != NULL && current_node->rightChild != NULL) {
+    // Step 5.1: find successor
+    BinarySearchTreeNode* successor = current_node->rightChild;
+    isLeftChild = false; // at the first step, successor is the right child of its parent.
+    BinarySearchTreeNode* successor_parent = current_node;
+
+    while (successor->leftChild != NULL) {
+        successor_parent = successor;
+        successor = successor->leftChild;
+        isLeftChild = true;
+    }
+
+    // Step 5.2: Replace the node D to delete by the successor
+    current_node->key = successor->key;
+    current_node->value = successor->value;
+}
+
+
+
+
+
+
 //ENQUEUE AND REHEAP UP IN MAX HEAP
 bool Heap::Enqueue(HeapNode item){
     if(size == capacity) return false;
@@ -272,3 +371,71 @@ void Heap::ReheapDown(int index){
 
 }
 
+
+////////////////////////////////////////////////////////////////////////////////////
+
+//WEEK 11
+
+//AVL TREES
+
+//INSERTING AND BALANCE FACTOR
+Node* insert(Node* node, int key) {
+    if (node == nullptr)
+        return new Node(key);
+
+    if (key < node->key)
+        node->left = insert(node->left, key);
+    else if (key > node->key)
+        node->right = insert(node->right, key);
+    else
+        return node; // Duplicate keys are not allowed in AVL tree
+
+    node->height = 1 + std::max(getHeight(node->left), getHeight(node->right));
+
+    int balance = getBalanceFactor(node);
+
+    if (balance > 1 && key < node->left->key)
+        return rightRotate(node);
+
+    if (balance < -1 && key > node->right->key)
+        return leftRotate(node);
+
+    if (balance > 1 && key > node->left->key) {
+        node->left = leftRotate(node->left);
+        return rightRotate(node);
+    }
+
+    if (balance < -1 && key < node->right->key) {
+        node->right = rightRotate(node->right);
+        return leftRotate(node);
+    }
+
+    return node;
+}
+
+//LEFT AND RIGHT ROTATE
+Node* rightRotate(Node* y) {
+    Node* x = y->left;
+    Node* T2 = x->right;
+
+    x->right = y;
+    y->left = T2;
+
+    y->height = std::max(getHeight(y->left), getHeight(y->right)) + 1;
+    x->height = std::max(getHeight(x->left), getHeight(x->right)) + 1;
+
+    return x;
+}
+
+Node* leftRotate(Node* x) {
+    Node* y = x->right;
+    Node* T2 = y->left;
+
+    y->left = x;
+    x->right = T2;
+
+    x->height = std::max(getHeight(x->left), getHeight(x->right)) + 1;
+    y->height = std::max(getHeight(y->left), getHeight(y->right)) + 1;
+
+    return y;
+}
