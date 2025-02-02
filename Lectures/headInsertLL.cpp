@@ -7,6 +7,10 @@ using namespace std;
     int data;
     Node * link;
   };
+  struct Node {
+    int data;
+    Node * link;
+  };
 
   //This makes a global variable for our object that we can use througout our code
   typedef Node* NodePtr;
