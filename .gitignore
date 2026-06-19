@@ -1,0 +1,21 @@
+# Python virtual environments (never commit — reproducible from requirements.txt)
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+
+# Compiled C/C++ binaries (build artifacts, not source)
+*.exe
+*.o
+*.out
+
+# Large media — too big for git, host elsewhere (exceeds GitHub 100MB limit)
+*.mp4
+*.mov
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
