@@ -14,6 +14,12 @@ __pycache__/
 *.mp4
 *.mov
 
+# Debug symbol bundles (build artifacts)
+*.dSYM/
+
+# Cloned upstream course repo (lives at github.com/jzarnett/mte241 — keep as its own clone)
+mte241/
+
 # OS / editor cruft
 .DS_Store
 Thumbs.db
